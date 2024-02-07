@@ -1,3 +1,6 @@
+from expense import Expense
+
+
 def main():
     # Get user input for specific expense
     get_user_input()
@@ -27,7 +30,8 @@ def get_user_input():
         selected_index = int(input(f"Select a number from {value_range}: ")) - 1
 
         if selected_index in range(len(expense_types)):
-            break
+            new_expense = Expense(expense_name, expense_amount, expense_types[selected_index])
+            return new_expense
         else:
             print("Invalid index selection, please try again.")
 

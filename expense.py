@@ -1,4 +1,4 @@
-class Expenses:
+class Expense:
     
     def __init__(self, name, type, amount):
         self.name = name
