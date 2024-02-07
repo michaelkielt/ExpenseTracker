@@ -2,9 +2,12 @@ from expense import Expense
 
 
 def main():
+    print("Running the expense tracker!")
+    expense_file_path = "expenses.csv"
     # Get user input for specific expense
-    get_user_input()
+    expense = get_user_input()
     # Write user expense to a file
+    write_expense_to_file(expense, expense_file_path)
     
     # Read file and break down expenses
     
@@ -30,14 +33,15 @@ def get_user_input():
         selected_index = int(input(f"Select a number from {value_range}: ")) - 1
 
         if selected_index in range(len(expense_types)):
-            new_expense = Expense(expense_name, expense_amount, expense_types[selected_index])
+            new_expense = Expense(name=expense_name, type=expense_types[selected_index], amount=expense_amount)
             return new_expense
         else:
             print("Invalid index selection, please try again.")
 
-def write_expense_to_file():
-    print("checking 2 works")
-    pass
+def write_expense_to_file(expense: Expense, expense_file_path):
+    print(f"Saving <{expense}> to {expense_file_path}")
+    with open(expense_file_path, "a") as file:
+        file.write(f"{expense.name}, {expense.type}, {expense.amount} \n")
 
 def summarise_expenses():
     print("checking 3 works")
