@@ -38,8 +38,3 @@ Welcome to Expense Tracker! This is a simple Python application designed to help
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-## Acknowledgements
-
-- Thank you to [OpenAI](https://openai.com) for providing assistance with developing this project.
-- Special thanks to [Python](https://www.python.org/) and [Markdown](https://www.markdownguide.org/) communities for their excellent tools and resources.
