@@ -4,13 +4,14 @@ from expense import Expense
 def main():
     print("Running the expense tracker!")
     expense_file_path = "expenses.csv"
+    budget = 800
     # Get user input for specific expense
-    #expense = get_user_input()
+    expense = get_user_input()
     # Write user expense to a file
-    #write_expense_to_file(expense, expense_file_path)
+    write_expense_to_file(expense, expense_file_path)
     
     # Read file and break down expenses
-    summarise_expenses(expense_file_path)
+    #summarise_expenses(expense_file_path)
      
 
 def get_user_input():
@@ -43,7 +44,7 @@ def write_expense_to_file(expense: Expense, expense_file_path):
     with open(expense_file_path, "a") as file:
         file.write(f"{expense.name}, {expense.type}, {expense.amount} \n")
 
-def summarise_expenses(expense_file_path):
+def summarise_expenses(expense_file_path, budget):
     print("Summarising user expenses")
     expenses = []
     with open(expense_file_path, "r") as file:
@@ -56,6 +57,24 @@ def summarise_expenses(expense_file_path):
                 amount=float(expense_amount)
             )
             expenses.append(line_expense)
+    
+    amount_by_type = {}
+    for expense in expenses:
+        key = expense_type
+        if key in amount_by_type:
+           amount_by_type[key] += expense.amount
+        else:
+            amount_by_type[key] = expense.amount
+    
+    print("Summarising expenses by type: ")
+    for key, amount in amount_by_type.items():
+        print(f" {key}: £{amount:.2f}")
+
+    total_spent = sum([ex.amount for ex in expenses])
+    print(f"You have spent £{total_spent:.2f} this month!")
+
+    remaining_budget = budget - total_spent
+    print(f"You're remaining budget this month is £{remaining_budget}")
 
 if __name__ == '__main__':
     main()
